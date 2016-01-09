@@ -1,22 +1,19 @@
 (function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('yoothub')
-    .controller('MainController', MainController);
+    angular
+        .module('yoothub')
+        .controller('MainController', MainController);
 
-  /** @ngInject */
-  function MainController($timeout, webDevTec, toastr) {
-    var vm = this;
+    MainController.$inject = [];
+    function MainController() {
+        var vm = this;
+        
 
+        activate();
 
+        ////////////////
 
-    activate();
-
-    function activate() {
-
+        function activate() { }
     }
-
-
-  }
 })();
