@@ -10,6 +10,8 @@
         var vm = this;
         vm.schemas = [];
         vm.useSchema = useSchema;
+        vm.formAction = '/api/Account/ExternalLogin';
+        vm.previousUrl = '/';
 
         activate();
 

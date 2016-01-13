@@ -1,4 +1,4 @@
-<div class="card-panel white-text cyan darken-2">
+<!--<div class="card-panel white-text cyan darken-2">
     Łubudubu trzeba się zalogować :(
 </div>
 
@@ -8,10 +8,17 @@
 
 <div class="card-panel white-text green lighten-4">
     Łubudubu trzeba się zalogować :(
-</div>
-
-<div>
+</div>-->
+<div class="row">
+<div class="card-panel white-text blue-grey col s10 offset-s1">
+    <p>Aby kontynuować, zaloguj się za pomocą:</p>
     <div ng-repeat="schema in vm.schemas">
-        <a ng-click="vm.useSchema(schema)" href="">{{::schema.DisplayName}}</a>
+        <form method="post" action="{{::vm.formAction}}">
+            <input type="hidden" name="Provider" value="{{::schema.AuthenticationScheme}}"></input>
+            <input type="hidden" name="ReturnURL" value="{{::vm.previousUrl}}"></input>
+            <input type="submit" class="waves-effect waves-light btn" value="{{::schema.DisplayName}}"></input>
+        </form>
     </div>
+    <p></p>
+</div>
 </div>

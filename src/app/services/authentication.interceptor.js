@@ -21,7 +21,7 @@
             if (response.status === 403 || response.status === 401 || response.status === 0) {
                 $injector.get('$state').go('login');
             }
-
+            
             return response;
         }
     }

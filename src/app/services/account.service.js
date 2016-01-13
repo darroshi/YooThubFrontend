@@ -40,12 +40,15 @@
 
         function logInWithSchema(schema) {
             var url = '/api/Account/ExternalLogin';
-            
-            $http.post(url, schema.AuthenticationScheme).then(logResponse);// redirect
+            var body = {
+                "Provider": schema.AuthenticationScheme,
+                "ReturnURL": "/"
+            };
+            $http.post(url, body).then(logResponse);// redirect
         }
-        
-        function logResponse(response){
-            
+
+        function logResponse(response) {
+
             console.log(response);
         }
 
