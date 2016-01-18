@@ -19,7 +19,7 @@
         
         
         function getAuthStatus() {// TODO: extract urls
-            var url = '/api/Account/ExternalLoginCallback';
+            var url = '/api/Account/GetLoggedUserInfo';
 
             return $http.get(url).then(getAuthenticatedStatusCode);
         }
