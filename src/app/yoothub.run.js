@@ -7,7 +7,6 @@
 
     /** @ngInject */
     function checkAuth(AccountService, $log) {
-        AccountService.getAuthStatus();
     }
 
 })();

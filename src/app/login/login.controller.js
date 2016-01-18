@@ -5,11 +5,10 @@
         .module('yoothub')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['AccountService'];
-    function LoginController(AccountService) {
+    LoginController.$inject = ['AccountService', '$log'];
+    function LoginController(AccountService, $log) {
         var vm = this;
         vm.schemas = [];
-        vm.useSchema = useSchema;
         vm.formAction = '/api/Account/ExternalLogin';
         vm.previousUrl = '/';
 
@@ -18,15 +17,13 @@
         ////////////////
 
         function activate() {
+            $log.info('Activate LoginController');
             AccountService.getAuthSchemas().then(setSchemas);
         }
 
         function setSchemas(data) {
+            $log.info('Set schema ' + data);
             vm.schemas = data;
-        }
-
-        function useSchema(schema) {
-            AccountService.logInWithSchema(schema);
         }
     }
 })();
