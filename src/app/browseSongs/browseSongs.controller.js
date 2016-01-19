@@ -15,7 +15,7 @@
         ////////////////
 
         function activate() {
-            SongService.getPage(1).then(setPage);
+            SongService.getPage(0).then(setPage);
         }
 
         function setPage(page) {

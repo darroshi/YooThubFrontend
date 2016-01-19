@@ -8,10 +8,10 @@
     /** @ngInject */
     function routerConfig($stateProvider) {
         $stateProvider
-            .state(browse);
+            .state(add);
     }
 
-    var browse = {
+    var add = {
         name: 'addSong',
         url: '/add',
         templateUrl: 'app/addSong/addSong.html',

@@ -1,5 +1,5 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
     angular
         .module('yoothub')
@@ -8,15 +8,25 @@
     AddSongController.$inject = ['SongService', '$log'];
     function AddSongController(SongService, $log) {
         var vm = this;
-        
+        vm.postSong = postSong;
 
-        activate();
+        vm.model = {
+            URL: '',
+            Tags: []
+        };
+
 
         ////////////////
 
-        function activate() { 
-            
-            
+        function postSong() {
+            $log.debug('Sending song', vm.model);
+            SongService.postNewSong(vm.model).then(handlePostSongResponse);
         }
+
+        function handlePostSongResponse(response) {
+            $log.debug('Song post reponse', response);
+
+        }
+
     }
 })();
