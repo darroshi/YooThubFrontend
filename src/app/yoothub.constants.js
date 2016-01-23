@@ -1,10 +1,15 @@
 /* global malarkey:false, moment:false */
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('yoothub')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    angular
+        .module('yoothub')
+        .constant('malarkey', malarkey)
+        .constant('moment', moment)
+        .constant('songsConstants', {
+            SONG_PAGE_SIZE: 20
+        });
+
+
 
 })();

@@ -1,14 +1,12 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('yoothub')
-    .run(runBlock);
+    angular
+        .module('yoothub')
+        .run(checkAuth);
 
-  /** @ngInject */
-  function runBlock($log) {
-
-    $log.debug('runBlock end');
-  }
+    /** @ngInject */
+    function checkAuth(AccountService, $log) {
+    }
 
 })();
