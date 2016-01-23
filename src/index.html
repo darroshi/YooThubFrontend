@@ -1,8 +1,9 @@
 <!doctype html>
 <html ng-app="yoothub">
-  <head>
+
+<head>
     <meta charset="utf-8">
-    <title>YooThub</title>
+    <title ng-bind-template="{{title}} - YooThub">YooThub</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -18,14 +19,21 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <!-- endbuild -->
-  </head>
-  <body>
+</head>
+
+<body ng-controller="MainPlayerController as playerController" >
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div ng-include src="'app/layout/navbar.html'"></div>
+
+    <div ng-show="'play' | isState">
+        <yt-player class="wide" id="mainPlayer" song="playerController.song"></yt-player>
+    </div>
+
     <div ui-view></div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
@@ -42,5 +50,6 @@
     <!-- endinject -->
     <!-- endbuild -->
 
-  </body>
+</body>
+
 </html>
