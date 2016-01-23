@@ -9,7 +9,8 @@
     function SongService($http, songsConstants, $log) {
         var service = {
             getPage: getPage,
-            postNewSong:postNewSong
+            postNewSong:postNewSong,
+            getCurrentSong:getCurrentSong
         };
 
         return service;
@@ -38,10 +39,28 @@
             };
         }
         
-        function postNewSong(songData){
+        function postNewSong(songData){// TODO: name + tags instead of "data"
             var url = '/api/Songs';
             
             return $http.post(url, songData);
+        }
+        
+        function getCurrentSong(){
+            var url = '/api/Play';
+            $log.debug('Getting new song');
+            return $http.get(url).then(parseCurrentSong);
+        }
+        
+        function parseCurrentSong(response){
+            $log.debug('New song response', response);
+            var lastPlayed = Date.parse(response.data.LastPlayed);
+            var startFrom = (new Date() - lastPlayed)/1000;
+            
+            return { 
+                contentId: response.data.SongId,
+                startFrom: startFrom,
+                title: response.data.Title
+            }
         }
     }
 })();
