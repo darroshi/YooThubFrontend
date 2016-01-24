@@ -35,6 +35,7 @@
             return {
                 Page: page,
                 PageSize: pageSize,
+                Count: response.data.Count,
                 Results: response.data.Results
             };
         }

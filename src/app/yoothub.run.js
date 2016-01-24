@@ -6,7 +6,8 @@
         .run(checkAuth);
 
     /** @ngInject */
-    function checkAuth(AccountService, $log) {
+    function checkAuth(AccountService, $log, ytVersion) {
+        $log.info('YooThub Frontend version', ytVersion);
     }
 
 })();

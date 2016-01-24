@@ -1,5 +1,25 @@
 <div>
-    <div ng-repeat="song in vm.songs">
-        {{::song}}
+    <div class="row">
+        <div class="col s12">
+            <yt-pagination class="center" pagination-data="vm.paginationData" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4" ng-repeat="song in vm.songs">
+            <div class="card hoverable">
+                <div class="card-image">
+                    <img ng-src="http://img.youtube.com/vi/{{ ::song.Song.SongId }}/hqdefault.jpg" />
+                    <a ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-card-title">{{ ::song.Song.Title }}</a>
+                </div>
+                <div class="card-content">
+                    <div class="chip" ng-repeat="tag in song.Song.Tags">{{::tag}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <yt-pagination class="center" pagination-data="vm.paginationData" />
+        </div>
     </div>
 </div>
