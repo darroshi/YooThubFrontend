@@ -31,6 +31,10 @@ body {
 .pagination li.active {
     @extend .green, .lighten-2;
 }
+
+.center {
+    margin: auto;
+}
      
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject

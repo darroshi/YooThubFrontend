@@ -1,5 +1,5 @@
 <ul class="pagination white-text">
-    <li ui-sref="browse({ page: vm.page-1})" ng-class="{disabled: !vm.hasPrevious, 'waves-effect': vm.hasPrevious}"><a ng-disabled="!vm.hasPrevious"><i class="material-icons">chevron_left</i></a></li>
+    <li ui-sref="browse({ page: vm.page-1})" ng-class="{disabled: !vm.hasPrevious, 'waves-effect': vm.hasPrevious}" ng-show="vm.hasPrevious"><a ng-disabled="!vm.hasPrevious"><i class="material-icons">chevron_left</i></a></li>
     <li ui-sref="{{::refData.ref}}" ng-repeat="refData in vm.refDataList" ng-class="{disabled: refData.url=='#', active: refData.page==vm.page, 'waves-effect': refData.url!='#'&&refData.page!=vm.page}"><a>{{::refData.page}}</a></li>
-    <li ui-sref="browse({ page: vm.page+1})" ng-class="{disabled: !vm.hasNext, 'waves-effect': vm.hasNext}"><a ng-disabled="!vm.hasNext"><i class="material-icons">chevron_right</i></a></li>
+    <li ui-sref="browse({ page: vm.page+1})" ng-class="{disabled: !vm.hasNext, 'waves-effect': vm.hasNext}" ng-show="vm.hasNext"><a ng-disabled="!vm.hasNext"><i class="material-icons">chevron_right</i></a></li>
 </ul>
