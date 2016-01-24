@@ -13,7 +13,7 @@
 
     var browse = {
         name: 'browse',
-        url: '/browse',
+        url: '/browse?page&search',
         templateUrl: 'app/browseSongs/browseSongs.html',
         controller: 'BrowseSongsController',
         controllerAs: 'vm'

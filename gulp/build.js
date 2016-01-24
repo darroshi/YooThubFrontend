@@ -65,7 +65,9 @@ gulp.task('html', ['inject', 'partials'], function () {
     }))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
-    .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
+    .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }))
+    .pipe($.replace('../bower_components/Materialize/font/roboto', 'fonts'))
+    .pipe($.replace('../bower_components/Materialize/font/material-design-icons', 'fonts'));
   });
 
 // Only applies for fonts from bower dependencies
@@ -76,6 +78,8 @@ gulp.task('fonts', function () {
     .pipe($.flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
+
+
 
 gulp.task('other', function () {
   var fileFilter = $.filter(function (file) {

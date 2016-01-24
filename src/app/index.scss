@@ -1,5 +1,7 @@
 /* Do not remove the comments below. It's the markers used by wiredep to inject
    sass dependencies when defined in the bower.json of your dependencies */
+   $roboto-font-path: "../bower_components/Materialize/font/roboto/";
+   $icons-font-path: "../bower_components/Materialize/font/material-design-icons/";
 // bower:scss
 // endbower
 body {
@@ -15,6 +17,19 @@ body {
     background: rgba(0, 0, 0, 0.75);
     padding: 10px 20px !important;
     
+}
+
+.pagination li a{
+    
+    @extend .white-text;
+}
+
+.pagination li.disabled a {
+    @extend .grey-text;
+}
+
+.pagination li.active {
+    @extend .green, .lighten-2;
 }
      
 
