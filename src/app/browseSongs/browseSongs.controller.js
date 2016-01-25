@@ -5,12 +5,14 @@
         .module('yoothub')
         .controller('BrowseSongsController', BrowseSongsController);
 
-    BrowseSongsController.$inject = ['SongService', '$log', '$stateParams', 'songsConstants'];
-    function BrowseSongsController(SongService, $log, $stateParams, songsConstants) {
+    BrowseSongsController.$inject = ['SongService', '$log', '$stateParams', 'songsConstants', '$state'];
+    function BrowseSongsController(SongService, $log, $stateParams, songsConstants, $state) {
         var vm = this;
         vm.songs = [];
         vm.search = null;
         vm.paginationData = null;
+
+        vm.onSearchChanged = onSearchChanged;
 
         activate();
 
@@ -21,9 +23,23 @@
             loadPage(parseInt($stateParams.page) || 1);
         }
 
+        function onSearchChanged() {
+            $state.go('browse', {
+                page: 1,
+                search: vm.search
+            });
+        }
+
         function loadPage(page) {
             $log.debug('Load song page', page, vm.search);
-            SongService.getPage(page - 1).then(setPage);
+            var params = {
+                'page': page - 1
+            };
+
+            if (vm.search) {
+                params['query'] = vm.search;
+            }
+            SongService.getPage(params).then(setPage);
         }
 
         function setPage(page) {

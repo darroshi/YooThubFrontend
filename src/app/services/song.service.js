@@ -16,16 +16,16 @@
         return service;
 
         ////////////////
-        function getPage(page) {
+        function getPage(pageParams) {
             var url = '/api/Songs';
 
-            $log.debug('Getting page', page);
-            var params = {
-                'page': page,
-                'pageSize': songsConstants.SONG_PAGE_SIZE,
-            };
+            $log.debug('Getting page', pageParams);
+            
+            if(!('pageSize' in pageParams)){
+                pageParams['pageSize'] = songsConstants.SONG_PAGE_SIZE;
+            }
 
-            return $http.get(url, { 'params': params }).then(parsePage);
+            return $http.get(url, { 'params': pageParams }).then(parsePage);
         }
 
         function parsePage(response) {
