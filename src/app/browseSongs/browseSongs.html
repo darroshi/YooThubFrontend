@@ -5,16 +5,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col l10 offset-l1">
-            <div class="col s12 m6 l4" ng-repeat="song in vm.songs">
-                <div class="card hoverable">
-                    <div class="card-image">
-                        <img ng-src="http://img.youtube.com/vi/{{ ::song.Song.SongId }}/hqdefault.jpg" />
-                        <a ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-card-title">{{ ::song.Song.Title }}</a>
-                    </div>
-                    <div class="card-content">
-                        <div class="chip" ng-repeat="tag in song.Song.Tags">{{::tag}}</div>
-                    </div>
+        <div class="col l10 offset-l1 cards-container">
+            <div ng-repeat="song in vm.songs" class=" card hoverable">
+                <div class="card-image">
+                    <img ng-src="http://img.youtube.com/vi/{{ ::song.Song.SongId }}/hqdefault.jpg" />
+                    <a ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-card-title">{{ ::song.Song.Title }}</a>
+                </div>
+                <div class="card-content">
+                    <div class="chip" ng-repeat="tag in song.Song.Tags">{{::tag}}</div>
                 </div>
             </div>
         </div>
