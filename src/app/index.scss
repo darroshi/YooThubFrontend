@@ -80,7 +80,7 @@ body {
    /* label underline focus color */
    .input-field input[type=text]:focus {
      border-bottom: 1px solid color("cyan", "darken-2");
-     box-shadow: 0 1px 0 0 color("cyan", "darken-3");
+     box-shadow: 0 1px 0 0 color("cyan", "darken-2");
    }
    /* valid color */
    .input-field input[type=text].valid {
@@ -97,6 +97,10 @@ body {
      color: #000;
    }
      
+.middle{
+    display: inline-flex;
+    vertical-align: middle;
+}
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */
