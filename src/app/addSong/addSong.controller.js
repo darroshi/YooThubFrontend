@@ -14,17 +14,31 @@
             URL: '',
             Tags: []
         };
+        
+        vm.errors = null;
 
 
         ////////////////
 
         function postSong() {
             $log.debug('Sending song', vm.model);
+            vm.errors = null;
             SongService.postNewSong(vm.model).then(handlePostSongResponse);
         }
 
-        function handlePostSongResponse(response) {
-            $log.debug('Song post reponse', response);
+        function handlePostSongResponse(result) {
+            if (result.success) {
+                vm.model = {
+                    URL: '',
+                    Tags: []
+                };
+                
+                //toast success
+                return;
+            }
+            
+            vm.errors = result.errors;
+
 
         }
 
