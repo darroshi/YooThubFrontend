@@ -6,7 +6,7 @@
         .module('yoothub')
         .constant('malarkey', malarkey)
         .constant('moment', moment)
-        .constant('ytVersion', '0.3.0')
+        .constant('ytVersion', '0.4.0')
         .constant('songsConstants', {
             SONG_PAGE_SIZE: 20
         });
