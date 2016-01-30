@@ -86,7 +86,9 @@
             return {
                 contentId: response.data.SongId,
                 startFrom: startFrom,
-                title: response.data.Title
+                title: response.data.Title,
+                addedBy: response.data.AddedByName,
+                timesPlayed: response.data.TimesPlayed
             }
         }
     }
