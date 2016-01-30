@@ -71,31 +71,18 @@ body {
 
   /* label color */
    .input-field label {
-     @extend .cyan-text, .text-lighten-4;
+    color: color("cyan", "lighten-2");
    }
-   /* label focus color */
-   .input-field input[type=text]:focus + label {
-     color: #000;
-   }
+
    /* label underline focus color */
    .input-field input[type=text]:focus {
      border-bottom: 1px solid color("cyan", "lighten-2");
-     box-shadow: 0 1px 0 0 color("cyan", "lighten-2");
+     box-shadow: 0 1px 0 0 color("cyan", "lighten-1");
    }
-   /* valid color */
-   .input-field input[type=text].valid {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* invalid color */
-   .input-field input[type=text].invalid {
-     border-bottom: 1px solid #000;
-     box-shadow: 0 1px 0 0 #000;
-   }
-   /* icon prefix focus color */
-   .input-field .prefix.active {
-     color: #000;
-   }
+
+.error-text{
+    color: color("red", "lighten-4");
+}
      
 .middle{
     display: inline-flex;
