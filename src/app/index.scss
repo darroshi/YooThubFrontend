@@ -71,7 +71,7 @@ body {
 
   /* label color */
    .input-field label {
-     @extend .cyan-text, .text-darken-2;
+     @extend .cyan-text, .text-lighten-4;
    }
    /* label focus color */
    .input-field input[type=text]:focus + label {
@@ -79,8 +79,8 @@ body {
    }
    /* label underline focus color */
    .input-field input[type=text]:focus {
-     border-bottom: 1px solid color("cyan", "darken-2");
-     box-shadow: 0 1px 0 0 color("cyan", "darken-2");
+     border-bottom: 1px solid color("cyan", "lighten-2");
+     box-shadow: 0 1px 0 0 color("cyan", "lighten-2");
    }
    /* valid color */
    .input-field input[type=text].valid {
