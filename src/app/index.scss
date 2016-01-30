@@ -15,7 +15,7 @@ body {
 
 .song-card-title{
     background: rgba(0, 0, 0, 0.75);
-    padding: 10px 20px !important;
+    padding: 10px 20px !important; 
     
 }
 
@@ -35,7 +35,59 @@ body {
 .center {
     margin: auto;
 }
+
+
+@mixin column-count($ct) {
+  -webkit-column-count: $ct;
+  -moz-column-count: $ct;
+  column-count: $ct;
+}
+
+.cards-container {
+  column-break-inside: avoid;
+  .card {
+    display: inline-block;
+    overflow: visible;
+    width: 100%;
+  }
+}
+
+@media #{$small-and-down} {
+  .cards-container {
+    @include column-count(1);
+  }
+}
+@media #{$medium-and-up} {
+  .cards-container {
+    @include column-count(2);
+  }
+}
+@media #{$large-and-up} {
+  .cards-container {
+    @include column-count(3);
+  }
+}
+
+
+  /* label color */
+   .input-field label {
+    color: color("cyan", "lighten-2");
+   }
+
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid color("cyan", "lighten-2");
+     box-shadow: 0 1px 0 0 color("cyan", "lighten-1");
+   }
+
+.error-text{
+    color: color("red", "lighten-4");
+}
      
+.middle{
+    display: inline-flex;
+    vertical-align: middle;
+}
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */

@@ -9,23 +9,23 @@
     function SongService($http, songsConstants, $log) {
         var service = {
             getPage: getPage,
-            postNewSong:postNewSong,
-            getCurrentSong:getCurrentSong
+            postNewSong: postNewSong,
+            getCurrentSong: getCurrentSong
         };
 
         return service;
 
         ////////////////
-        function getPage(page) {
+        function getPage(pageParams) {
             var url = '/api/Songs';
 
-            $log.debug('Getting page', page);
-            var params = {
-                'page': page,
-                'pageSize': songsConstants.SONG_PAGE_SIZE,
-            };
+            $log.debug('Getting page', pageParams);
 
-            return $http.get(url, { 'params': params }).then(parsePage);
+            if (!('pageSize' in pageParams)) {
+                pageParams['pageSize'] = songsConstants.SONG_PAGE_SIZE;
+            }
+
+            return $http.get(url, { 'params': pageParams }).then(parsePage);
         }
 
         function parsePage(response) {
@@ -39,28 +39,56 @@
                 Results: response.data.Results
             };
         }
-        
-        function postNewSong(songData){// TODO: name + tags instead of "data"
+
+        function postNewSong(songData) {// TODO: name + tags instead of "data"
             var url = '/api/Songs';
-            
-            return $http.post(url, songData);
+
+            return $http.post(url, songData).then(parseNewSongRespone);
         }
-        
-        function getCurrentSong(){
+
+        function parseNewSongRespone(response) {
+            $log.debug('Song post reponse', response);
+            if (response.status === 200) {
+                return {
+                    success: true,
+                    errors: null
+                }
+            }
+
+            if (response.status === 400) {
+                return {
+                    success: false,
+                    errors: response.data
+                }
+            }
+
+            if (response.status === 500) {
+                return {
+                    success: false,
+                    errors: { form: "Wystąpił nieoczekiwany błąd! :(" },
+                }
+
+            }
+        }
+
+
+        function getCurrentSong() {
             var url = '/api/Play';
             $log.debug('Getting new song');
             return $http.get(url).then(parseCurrentSong);
         }
-        
-        function parseCurrentSong(response){
+
+        function parseCurrentSong(response) {
             $log.debug('New song response', response);
             var lastPlayed = Date.parse(response.data.LastPlayed);
-            var startFrom = (new Date() - lastPlayed)/1000;
-            
-            return { 
+            var startFrom = (new Date() - lastPlayed) / 1000;
+
+            return {
                 contentId: response.data.SongId,
                 startFrom: startFrom,
-                title: response.data.Title
+                title: response.data.Title,
+                addedBy: response.data.AddedByName,
+                timesPlayed: response.data.TimesPlayed
             }
         }
     }
