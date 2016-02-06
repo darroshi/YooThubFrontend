@@ -65,7 +65,7 @@
             }
 
             if (response.status === 500) {
-                $log.error('Song post reponse',response);
+                $log.error('Song post reponse', response);
                 return {
                     success: false,
                     errors: { form: "Wystąpił nieoczekiwany błąd! :(" },
@@ -95,28 +95,43 @@
             }
         }
 
-        function upvoteSong(id) {
-            var url = '/api/Songs/Upvote/' + id;
-            $log.debug('Posting upvote', id);
-            return $http.post(url).then(parseVotingResult);
+        function upvoteSong(song) {
+            voteSong(song, songsConstants.UPVOTE);
         }
 
-        function downvoteSong(id) {
-            var url = '/api/Songs/Downvote/' + id;
-            $log.debug('Posting downvote', id);
-            return $http.post(url).then(parseVotingResult);
+        function downvoteSong(song) {
+            voteSong(song, songsConstants.DOWNVOTE);
         }
 
-        function parseVotingResult(response) {
+        function voteSong(song, direction) {
+            if (song.CurrentVote == direction)
+                return;
+
+            var url = '/api/Songs/' + direction + '/' + song.Song.Id;
+            $log.debug('Posting ' + direction, song.Song.Id, song.Song.Title);
+            return $http.post(url).then(function (result) {
+                parseVotingResult(result, song, direction);
+            });
+        }
+
+        function parseVotingResult(response, song, direction) {
             $log.debug('Voting response', response);
-            
-            if(response.status===200){
+
+            if (response.status === 200) {
+
+                if (!song.CurrentVote) {
+                    song.CurrentVote = '';
+                }
+                song.Song.Votes += songsConstants.VOTE_VALUES[song.CurrentVote + direction];
+                song.CurrentVote = direction;
                 return true;
+
             }
-            
-            
-            $log.error('Voting response',response);
-            return false;            
+
+
+            $log.error('Voting response', response, song, direction);
+            return false;
         }
+
     }
 })();
