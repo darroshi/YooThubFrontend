@@ -11,6 +11,8 @@
         vm.songs = [];
         vm.search = null;
         vm.paginationData = null;
+        vm.upvote = upvote;
+        vm.downvote = downvote;
 
         vm.onSearchChanged = onSearchChanged;
 
@@ -50,6 +52,14 @@
                 PageSize: page.PageSize
             }
             vm.songs = page.Results;
+        }
+
+        function upvote(song) {
+            SongService.upvoteSong(song);
+        }
+
+        function downvote(song) {
+            SongService.downvoteSong(song);
         }
     }
 })();

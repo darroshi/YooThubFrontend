@@ -10,7 +10,9 @@
         var service = {
             getPage: getPage,
             postNewSong: postNewSong,
-            getCurrentSong: getCurrentSong
+            getCurrentSong: getCurrentSong,
+            upvoteSong: upvoteSong,
+            downvoteSong: downvoteSong
         };
 
         return service;
@@ -63,6 +65,7 @@
             }
 
             if (response.status === 500) {
+                $log.error('Song post reponse', response);
                 return {
                     success: false,
                     errors: { form: "Wystąpił nieoczekiwany błąd! :(" },
@@ -91,5 +94,44 @@
                 timesPlayed: response.data.TimesPlayed
             }
         }
+
+        function upvoteSong(song) {
+            voteSong(song, songsConstants.UPVOTE);
+        }
+
+        function downvoteSong(song) {
+            voteSong(song, songsConstants.DOWNVOTE);
+        }
+
+        function voteSong(song, direction) {
+            if (song.CurrentVote == direction)
+                return;
+
+            var url = '/api/Songs/' + direction + '/' + song.Song.Id;
+            $log.debug('Posting ' + direction, song.Song.Id, song.Song.Title);
+            return $http.post(url).then(function (result) {
+                parseVotingResult(result, song, direction);
+            });
+        }
+
+        function parseVotingResult(response, song, direction) {
+            $log.debug('Voting response', response);
+
+            if (response.status === 200) {
+
+                if (!song.CurrentVote) {
+                    song.CurrentVote = '';
+                }
+                song.Song.Votes += songsConstants.VOTE_VALUES[song.CurrentVote + direction];
+                song.CurrentVote = direction;
+                return true;
+
+            }
+
+
+            $log.error('Voting response', response, song, direction);
+            return false;
+        }
+
     }
 })();

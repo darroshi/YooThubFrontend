@@ -18,9 +18,16 @@
                     <a ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-card-title">{{ ::song.Song.Title }}</a>
                 </div>
                 <div class="card-content">
-                    <div><i class="tiny material-icons middle">perm_identity</i><span class="middle">{{::song.Song.AddedByName}}</span></div>
-                    <div><i class="tiny material-icons middle">replay</i> <span class="middle">{{::song.Song.TimesPlayed}}</span></div>
+                    <div class="row">
+                        <div class="col"><i class="tiny material-icons middle">replay</i> <span class="middle">{{::song.Song.TimesPlayed}}</span></div>
+                        <div class="col"><i class="tiny material-icons middle">thumbs_up_down</i> <span class="middle">{{song.Song.Votes}}</span></div>
+                        <div class="col"><i class="tiny material-icons middle">perm_identity</i><span class="middle">{{::song.Song.AddedByName}}</span></div>
+                    </div>
                     <div class="chip" ng-repeat="tag in song.Song.Tags">{{::tag}}</div>
+                </div>
+                <div class="card-action">
+                    <a href="" ng-click="vm.upvote(song)" ng-class="{upvoted: song.CurrentVote == 'Upvote'}"><i class="material-icons left">thumb_up</i></a>
+                    <a href="" ng-click="vm.downvote(song)" ng-class="{downvoted: song.CurrentVote == 'Downvote'}"><i class="material-icons left">thumb_down</i></a>
                 </div>
             </div>
         </div>
