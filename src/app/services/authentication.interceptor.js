@@ -19,7 +19,7 @@
 
         function response(response) {
             if (response.status === 403 || response.status === 401 || response.status === 0) {
-                $injector.get('$state').go('login');
+                $injector.get('LoginModalService').show();
             }
             
             return response;
