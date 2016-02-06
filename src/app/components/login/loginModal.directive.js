@@ -7,10 +7,6 @@
 
     ytLoginModal.$inject = [];
     function ytLoginModal() {
-        // Usage:
-        //
-        // Creates:
-        //
         var directive = {
             templateUrl: 'app/components/login/login.html',
             bindToController: true,
@@ -27,10 +23,10 @@
         }
     }
 
-    LoginModalController.$inject = ['AccountService', '$log','eventConstants', '$rootScope'];
+    LoginModalController.$inject = ['AccountService', '$log', '$window','$rootScope'];
     
     /* @ngInject */
-    function LoginModalController(AccountService, $log, eventConstants, $rootScope) {
+    function LoginModalController(AccountService, $log,$window,$rootScope) {
         var vm = this;
         vm.schemas = [];
         vm.formAction = '/api/Account/ExternalLogin';
@@ -43,11 +39,16 @@
         ////////////////
 
         function activate() {
-            $log.info('Activate LoginModalController');
+            $log.debug('Activate LoginModalController');
+            $rootScope.$on('$locationChangeSuccess', locationChanged);
             
             AccountService.getAuthSchemas().then(setSchemas);
         }
         
+        function locationChanged(event, newUrl, oldUrl){
+            vm.previousUrl = $window.location.hash;
+        }
+
         function setSchemas(data) {
             $log.info('Set schema ', data);
             vm.schemas = data;

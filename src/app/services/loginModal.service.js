@@ -5,7 +5,7 @@
         .module('yoothub')
         .factory('LoginModalService', LoginModalService);
 
-    LoginModalService.$inject = ['$log','$window'];
+    LoginModalService.$inject = ['$log'];
     function LoginModalService($log,$window) {
         var service = {
             show:show
@@ -15,8 +15,6 @@
 
         ////////////////
         function show() {    
-            var currentUrl=$window.location.hash;
-            $log.debug("Show login modal", currentUrl)
             $('#loginModal').openModal();
         }
         

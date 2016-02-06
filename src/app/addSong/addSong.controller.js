@@ -14,7 +14,7 @@
             URL: '',
             Tags: []
         };
-
+        
         vm.errors = null;
         vm.processing = false;
 
