@@ -5,8 +5,8 @@
         .module('yoothub')
         .controller('AddSongController', AddSongController);
 
-    AddSongController.$inject = ['SongService', '$log', '$scope', 'ToastService'];
-    function AddSongController(SongService, $log, $scope, ToastService) {
+    AddSongController.$inject = ['SongService', '$log', '$scope', 'ToastService', 'AccountService'];
+    function AddSongController(SongService, $log, $scope, ToastService, AccountService) {
         var vm = this;
         vm.postSong = postSong;
 
@@ -17,8 +17,16 @@
         
         vm.errors = null;
         vm.processing = false;
+        
+        activate();
 
         ////////////////
+        
+        function activate(){
+            
+           AccountService.getAuthStatus(); 
+            
+        }
 
         function postSong() {
             if (vm.processing)
