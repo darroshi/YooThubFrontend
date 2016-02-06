@@ -10,7 +10,7 @@
         var service = {
             getAuthStatus: getAuthStatus,
             getAuthSchemas: getAuthSchemas,
-            logInWithSchema: logInWithSchema
+            //logInWithSchema: logInWithSchema
         };
 
         return service;
@@ -38,14 +38,14 @@
             return response.data;
         }
 
-        function logInWithSchema(schema) {
-            var url = '/api/Account/ExternalLogin';
-            var body = {
-                "Provider": schema.AuthenticationScheme,
-                "ReturnURL": "/"
-            };
-            $http.post(url, body).then(logResponse);// redirect
-        }
+        // function logInWithSchema(schema) {
+        //     var url = '/api/Account/ExternalLogin';
+        //     var body = {
+        //         "Provider": schema.AuthenticationScheme,
+        //         "ReturnURL": "/"
+        //     };
+        //     $http.post(url, body).then(logResponse);// redirect
+        // }
 
         function logResponse(response) {
 

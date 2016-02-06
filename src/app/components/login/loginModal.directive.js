@@ -30,7 +30,7 @@
         var vm = this;
         vm.schemas = [];
         vm.formAction = '/api/Account/ExternalLogin';
-        vm.previousUrl = '/';
+        vm.previousUrl = '/'+$window.location.hash;
 
 
 
@@ -46,7 +46,7 @@
         }
         
         function locationChanged(event, newUrl, oldUrl){
-            vm.previousUrl = $window.location.hash;
+            vm.previousUrl ='/'+ $window.location.hash;
         }
 
         function setSchemas(data) {
