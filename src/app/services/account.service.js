@@ -9,8 +9,7 @@
     function AccountService($http) {
         var service = {
             getAuthStatus: getAuthStatus,
-            getAuthSchemas: getAuthSchemas,
-            logInWithSchema: logInWithSchema
+            getAuthSchemas: getAuthSchemas
         };
 
         return service;
@@ -37,20 +36,5 @@
         function getData(response) {
             return response.data;
         }
-
-        function logInWithSchema(schema) {
-            var url = '/api/Account/ExternalLogin';
-            var body = {
-                "Provider": schema.AuthenticationScheme,
-                "ReturnURL": "/"
-            };
-            $http.post(url, body).then(logResponse);// redirect
-        }
-
-        function logResponse(response) {
-
-            console.log(response);
-        }
-
     }
 })();

@@ -5,8 +5,8 @@
         .module('yoothub')
         .controller('AddSongController', AddSongController);
 
-    AddSongController.$inject = ['SongService', '$log', '$scope', 'ToastService'];
-    function AddSongController(SongService, $log, $scope, ToastService) {
+    AddSongController.$inject = ['SongService', '$log', '$scope', 'ToastService', 'AccountService'];
+    function AddSongController(SongService, $log, $scope, ToastService, AccountService) {
         var vm = this;
         vm.postSong = postSong;
 
@@ -18,7 +18,13 @@
         vm.errors = null;
         vm.processing = false;
 
+        activate();
+
         ////////////////
+        
+        function activate() {
+            AccountService.getAuthStatus();
+        }
 
         function postSong() {
             if (vm.processing)
@@ -31,6 +37,13 @@
 
         function handlePostSongResponse(result) {
             $log.debug('New song result', result);
+            vm.processing = false;
+
+            if (!result) {
+                return;
+            }
+
+
             setErrors(result.errors);
             if (result.success) {
                 vm.model = {
@@ -40,7 +53,7 @@
                 ToastService.success("Dodano!");
             }
 
-            vm.processing = false;
+
         }
 
         function setErrors(errors) {
