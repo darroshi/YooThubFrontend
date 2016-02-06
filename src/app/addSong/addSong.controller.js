@@ -31,6 +31,13 @@
 
         function handlePostSongResponse(result) {
             $log.debug('New song result', result);
+            vm.processing = false;
+            
+            if (!result) {
+                return;
+            }
+
+
             setErrors(result.errors);
             if (result.success) {
                 vm.model = {
@@ -40,7 +47,7 @@
                 ToastService.success("Dodano!");
             }
 
-            vm.processing = false;
+
         }
 
         function setErrors(errors) {
