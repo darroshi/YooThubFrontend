@@ -14,18 +14,16 @@
             URL: '',
             Tags: []
         };
-        
+
         vm.errors = null;
         vm.processing = false;
-        
+
         activate();
 
         ////////////////
         
-        function activate(){
-            
-           AccountService.getAuthStatus(); 
-            
+        function activate() {
+            AccountService.getAuthStatus();
         }
 
         function postSong() {
@@ -40,7 +38,7 @@
         function handlePostSongResponse(result) {
             $log.debug('New song result', result);
             vm.processing = false;
-            
+
             if (!result) {
                 return;
             }
