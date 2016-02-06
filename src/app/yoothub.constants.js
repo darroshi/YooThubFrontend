@@ -18,7 +18,4 @@
                 'DownvoteUpvote': 2
             }
         });
-
-
-
 })();
