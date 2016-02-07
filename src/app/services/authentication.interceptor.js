@@ -17,12 +17,12 @@
 
         ////////////////
 
-        function response(response) {
-            if (response.status === 403 || response.status === 401 || response.status === 0) {
+        function response(resp) {
+            if (resp.status === 403 || resp.status === 401 || resp.status === 0) {
                 $injector.get('LoginModalService').show();
             }
-            
-            return response;
+
+            return resp;
         }
     }
 })();
