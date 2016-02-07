@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col s12 l10 offset-l1 white-text">
-        <div ng-bind-template="Tytuł: {{playerController.song.title}}"></div>
-        <div ng-bind-template="Dodał(a): {{playerController.song.addedBy}}"></div>
-        <div ng-bind-template="Odtworzeń: {{playerController.song.timesPlayed}}"></div>
+        <div ng-bind-template="Tytuł: {{playerController.song.Song.Title}}"></div>
+        <div ng-bind-template="Dodał(a): {{playerController.song.Song.AddedByName}}"></div>
+        <div ng-bind-template="Odtworzeń: {{playerController.song.Song.TimesPlayed}}"></div>
+        <div ng-bind-template="Głosy: {{playerController.song.Song.Votes}}"></div>
     </div>
 </div>

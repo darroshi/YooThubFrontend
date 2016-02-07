@@ -83,16 +83,12 @@
 
         function parseCurrentSong(response) {
             $log.debug('New song response', response);
-            var lastPlayed = Date.parse(response.data.LastPlayed);
+            var song = response.data;
+            var lastPlayed = Date.parse(song.Song.LastPlayed);
             var startFrom = (new Date() - lastPlayed) / 1000;
 
-            return {
-                contentId: response.data.SongId,
-                startFrom: startFrom,
-                title: response.data.Title,
-                addedBy: response.data.AddedByName,
-                timesPlayed: response.data.TimesPlayed
-            }
+            song.startFrom = startFrom; //TODO: add abstraction
+            return song;
         }
 
         function upvoteSong(song) {
