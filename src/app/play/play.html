@@ -4,5 +4,7 @@
         <div ng-bind-template="Dodał(a): {{playerController.song.Song.AddedByName}}"></div>
         <div ng-bind-template="Odtworzeń: {{playerController.song.Song.TimesPlayed}}"></div>
         <div ng-bind-template="Głosy: {{playerController.song.Song.Votes}}"></div>
+        <a href="" ng-click="vm.upvote(playerController.song)" ng-class="{upvoted: playerController.song.CurrentVote == 'Upvote'}"><i class="material-icons left">thumb_up</i></a>
+        <a href="" ng-click="vm.downvote(playerController.song)" ng-class="{downvoted: playerController.song.CurrentVote == 'Downvote'}"><i class="material-icons left">thumb_down</i></a>
     </div>
 </div>
