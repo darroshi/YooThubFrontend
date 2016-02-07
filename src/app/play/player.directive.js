@@ -158,7 +158,7 @@
 
         function loadSong(newValue, oldValue) {
             if (newValue !== oldValue) {
-                loadVideo(newValue.contentId, newValue.startFrom);
+                loadVideo(newValue.Song.SongId, newValue.startFrom);
             }
         }
 

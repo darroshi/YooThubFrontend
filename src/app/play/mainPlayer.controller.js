@@ -44,7 +44,7 @@
         function setSong(data) {
             $log.debug("Setting song data", data);
             playerController.song = data;
-            $rootScope.title = data.title;
+            $rootScope.title = data.Song.Title;
         }
     }
 })();

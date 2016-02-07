@@ -1,19 +1,24 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
     angular
         .module('yoothub')
         .controller('PlayController', PlayController);
 
-    PlayController.$inject = [];
-    function PlayController() {
+    PlayController.$inject = ['SongService'];
+    function PlayController(SongService) {
         var vm = this;
-        
-
-        activate();
+        vm.upvote = upvote;
+        vm.downvote = downvote;        
 
         ////////////////
+        
+        function upvote(song) {
+            SongService.upvoteSong(song);
+        }
 
-        function activate() { }
+        function downvote(song) {
+            SongService.downvoteSong(song);
+        }
     }
 })();
