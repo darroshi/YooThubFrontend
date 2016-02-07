@@ -5,45 +5,55 @@
         .module('yoothub')
         .controller('MainPlayerController', MainPlayerController);
 
-    MainPlayerController.$inject = ['SongService', '$rootScope', "$log"];
-    function MainPlayerController(SongService, $rootScope, $log) {
-        var playerController = this;
-        playerController.song = null;
+    MainPlayerController.$inject = ['SongService', '$rootScope', '$log', '$scope'];
+    function MainPlayerController(SongService, $rootScope, $log, $scope) {
+        var vm = this;
+        vm.song = null;
 
         activate();
 
         ////////////////
+        var destroyReady = null;
+        var destroyEnded = null;
+        var destroyError = null;
+        var destroyReload = null;
 
         function activate() {
-            $rootScope.$on('player.mainPlayer.ready', onPlayerReady);
-            $rootScope.$on('player.mainPlayer.ended', onPlayEnded);
-            $rootScope.$on('player.mainPlayer.error', onPlayError);
-            $rootScope.$on('player.mainPlayer.reload', loadSong);
+            //TODO: how to properly destroy events
+            destroyReady = $rootScope.$on('player.mainPlayer.ready', onPlayerReady);
+            destroyEnded = $rootScope.$on('player.mainPlayer.ended', onPlayEnded);
+            destroyError = $rootScope.$on('player.mainPlayer.error', onPlayError);
+            destroyReload = $rootScope.$on('player.mainPlayer.reload', loadSong);
 
+            $scope.$on('$destroy', function () {
+                destroyReady();
+                destroyEnded();
+                destroyError();
+                destroyReload();
+            });
         }
 
-        function onPlayerReady(event) {
+        function onPlayerReady() {
             loadSong();
         }
 
-        function onPlayEnded(event) {
+        function onPlayEnded() {
             loadSong();
         }
 
-        function onPlayError(event) {
-            if (playerController.song.contentId !== undefined) {
-                SongService.reportError(playerController.song.contentId).finally(loadSong);
+        function onPlayError() {
+            if (angular.isDefined(vm.song.contentId)) {
+                SongService.reportError(vm.song.contentId).finally(loadSong);
             }
         }
 
         function loadSong() {
-            
             SongService.getCurrentSong().then(setSong);
         }
 
         function setSong(data) {
-            $log.debug("Setting song data", data);
-            playerController.song = data;
+            $log.debug('Setting song data', data);
+            vm.song = data;
             $rootScope.title = data.Song.Title;
         }
     }

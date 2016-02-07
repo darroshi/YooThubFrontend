@@ -12,10 +12,10 @@
             UPVOTE: 'Upvote',
             DOWNVOTE: 'Downvote',
             VOTE_VALUES: {
-                'Upvote': 1,
-                'Downvote': -1,
-                'UpvoteDownvote': -2,
-                'DownvoteUpvote': 2
+                Upvote: 1,
+                Downvote: -1,
+                UpvoteDownvote: -2,
+                DownvoteUpvote: 2
             }
         });
 })();

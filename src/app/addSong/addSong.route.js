@@ -5,11 +5,6 @@
         .module('yoothub')
         .config(routerConfig);
 
-    /** @ngInject */
-    function routerConfig($stateProvider) {
-        $stateProvider
-            .state(add);
-    }
 
     var add = {
         name: 'addSong',
@@ -17,6 +12,11 @@
         templateUrl: 'app/addSong/addSong.html',
         controller: 'AddSongController',
         controllerAs: 'vm'
-    }
+    };
 
+    /** @ngInject */
+    function routerConfig($stateProvider) {
+        $stateProvider
+            .state(add);
+    }
 })();

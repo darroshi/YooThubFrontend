@@ -21,14 +21,16 @@
         activate();
 
         ////////////////
-        
+
         function activate() {
             AccountService.getAuthStatus();
         }
 
         function postSong() {
-            if (vm.processing)
+            if (vm.processing) {
                 return;
+            }
+
             vm.processing = true;
             $log.debug('Sending song', vm.model);
             setErrors(null);
@@ -50,17 +52,14 @@
                     URL: '',
                     Tags: []
                 };
-                ToastService.success("Dodano!");
+                ToastService.success('Dodano!');
             }
-
-
         }
 
         function setErrors(errors) {
             vm.errors = errors;
-            $scope.form.URL.$setValidity("server", vm.errors && !vm.errors.URL);
-            $scope.form.Tags.$setValidity("server", vm.errors && !vm.errors.Tags);
+            $scope.form.URL.$setValidity('server', vm.errors && !vm.errors.URL);
+            $scope.form.Tags.$setValidity('server', vm.errors && !vm.errors.Tags);
         }
-
     }
 })();

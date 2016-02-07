@@ -19,8 +19,8 @@
         toastrConfig.progressBar = false;
     }
 
-    configInterceptors.$inject = ['$httpProvider']
-  
+    configInterceptors.$inject = ['$httpProvider'];
+
     /** @ngInject */
     function configInterceptors($httpProvider) {
         $httpProvider.interceptors.push('AuthenticationInterceptor');

@@ -15,8 +15,7 @@
         return service;
 
         ////////////////
-        
-        
+
         function getAuthStatus() {// TODO: extract urls
             var url = '/api/Account/GetLoggedUserInfo';
 
