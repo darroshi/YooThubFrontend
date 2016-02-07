@@ -60,7 +60,7 @@
     ],
     "strict": [
       2,
-      "global"
+      "function"
     ],
     "curly": [
       2,
