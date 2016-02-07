@@ -9,10 +9,10 @@
     function PlayController(SongService) {
         var vm = this;
         vm.upvote = upvote;
-        vm.downvote = downvote;        
+        vm.downvote = downvote;
 
         ////////////////
-        
+
         function upvote(song) {
             SongService.upvoteSong(song);
         }

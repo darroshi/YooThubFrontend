@@ -12,41 +12,38 @@
             bindToController: true,
             controller: LoginModalController,
             controllerAs: 'vm',
-            link: link,
-            restrict: 'E',
-            scope: {
-            }
+            restrict: 'E'
         };
         return directive;
-
-        function link(scope, element, attrs) {
-        }
     }
 
-    LoginModalController.$inject = ['AccountService', '$log', '$window','$rootScope'];
-    
+    LoginModalController.$inject = ['AccountService', '$log', '$window', '$rootScope', '$scope'];
+
     /* @ngInject */
-    function LoginModalController(AccountService, $log,$window,$rootScope) {
+    function LoginModalController(AccountService, $log, $window, $rootScope, $scope) {
         var vm = this;
         vm.schemas = [];
         vm.formAction = '/api/Account/ExternalLogin';
-        vm.previousUrl = '/'+$window.location.hash;
-
-
+        vm.previousUrl = '/' + $window.location.hash;
 
         activate();
 
         ////////////////
+        var destroyLocationChangedHandler = null;
 
         function activate() {
             $log.debug('Activate LoginModalController');
-            $rootScope.$on('$locationChangeSuccess', locationChanged);
-            
+            destroyLocationChangedHandler = $rootScope.$on('$locationChangeSuccess', locationChanged);
+
+            $scope.$on('$destroy', function () {
+                destroyLocationChangedHandler();
+            });
+
             AccountService.getAuthSchemas().then(setSchemas);
         }
-        
-        function locationChanged(event, newUrl, oldUrl){
-            vm.previousUrl ='/'+ $window.location.hash;
+
+        function locationChanged() {
+            vm.previousUrl = '/' + $window.location.hash;
         }
 
         function setSchemas(data) {

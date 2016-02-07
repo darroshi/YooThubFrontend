@@ -9,29 +9,18 @@
     function ToastService(toastr) {
         var service = {
             success: success,
-            error: error,
+            error: error
         };
 
         return service;
 
         ////////////////
         function success(content) {
-            toastr["success"](content);
-            //return show(content, 'success');
-
-
+            toastr.success(content);
         }
 
         function error(content) {
-            return show(content, 'error')
-        }
-
-        function show(content, type) {
-            return toastr.pop({
-                type: type,
-                body: content,
-                timeout: 2000,
-            });
+            toastr.error(content);
         }
     }
 })();
