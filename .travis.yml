@@ -17,5 +17,8 @@ install:
   - bower install
 script:
   - gulp build
+deploy:
+  - ./deploy_docker_image.sh VPS_IP
+  
 notifications:
   slack: krysztalowepulpety:hHLE5HwACe8xjFsSD2ramKt1
