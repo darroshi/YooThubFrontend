@@ -18,6 +18,6 @@ install:
 script:
   - gulp build
 after_success:
-  - ./deploy_docker_image.sh VPS_IP
+  - sudo ./deploy_docker_image.sh $VPS_IP
 notifications:
   slack: krysztalowepulpety:hHLE5HwACe8xjFsSD2ramKt1
