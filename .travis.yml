@@ -11,13 +11,11 @@ branches:
 install:
   - npm -g install npm@latest
   - npm install -g bower gulp
-  - npm install es5-shim
   - npm install
   - npm install phantomjs
   - npm install -g karma
   - bower install
 script:
   - gulp build
-  - gulp test
 notifications:
   slack: krysztalowepulpety:hHLE5HwACe8xjFsSD2ramKt1
