@@ -4,6 +4,9 @@ services:
   - docker
 node_js:
   - "4.2.6"
+branches:
+  only:
+    - /^v\d+.\d+.\d+/
 cache:
   directories:
     - node_modules
