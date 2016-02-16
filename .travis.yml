@@ -4,9 +4,6 @@ services:
   - docker
 node_js:
   - "4.2.6"
-branches:
-  only:
-    - master
 cache:
   directories:
     - node_modules
@@ -21,6 +18,9 @@ install:
 script:
   - gulp build
 after_success:
-  - sudo ./deploy_docker_image.sh $VPS_IP
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker build -t $DOCKER_IMAGE_NAME .
+  - if [ ! -z "$TRAVIS_TAG" ]; then docker tag $DOCKER_IMAGE_NAME:latest $DOCKER_IMAGE_NAME:$TRAVIS_TAG; fi && docker push $DOCKER_IMAGE_NAME
+
 notifications:
   slack: krysztalowepulpety:hHLE5HwACe8xjFsSD2ramKt1
