@@ -9,12 +9,14 @@ branches:
     - master
     - develop
 install:
+  - npm -g install npm@latest
   - npm install -g bower gulp
   - npm install
-  - npm install -g gulp
   - npm install phantomjs
   - npm install -g karma
   - bower install
 script:
   - gulp build
   - gulp test
+notifications:
+  slack: krysztalowepulpety:hHLE5HwACe8xjFsSD2ramKt1
