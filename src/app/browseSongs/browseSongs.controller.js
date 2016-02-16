@@ -19,7 +19,7 @@
         activate();
 
         ////////////////
-       
+
         function activate() {
             vm.search = $stateParams.search;
             loadPage(parseInt($stateParams.page) || 1);
@@ -35,11 +35,11 @@
         function loadPage(page) {
             $log.debug('Load song page', page, vm.search);
             var params = {
-                'page': page - 1
+                page: page - 1
             };
 
             if (vm.search) {
-                params['query'] = vm.search;
+                params.query = vm.search;
             }
             SongService.getPage(params).then(setPage);
         }
@@ -50,7 +50,7 @@
                 Page: page.Page + 1,
                 Count: page.Count,
                 PageSize: page.PageSize
-            }
+            };
             vm.songs = page.Results;
         }
 

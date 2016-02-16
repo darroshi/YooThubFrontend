@@ -1,22 +1,23 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
     angular
         .module('yoothub')
         .factory('LoginModalService', LoginModalService);
 
     LoginModalService.$inject = ['$log'];
-    function LoginModalService($log,$window) {
+    function LoginModalService($log) {
         var service = {
-            show:show
+            show: show
         };
-        
+
         return service;
 
         ////////////////
-        function show() {    
-            $('#loginModal').openModal();
+        function show() {
+            $log.debug('Show login modal');
+            angular.element('#loginModal').openModal();
         }
-        
+
     }
 })();

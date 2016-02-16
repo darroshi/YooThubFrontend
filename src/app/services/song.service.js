@@ -24,10 +24,10 @@
             $log.debug('Getting page', pageParams);
 
             if (!('pageSize' in pageParams)) {
-                pageParams['pageSize'] = songsConstants.SONG_PAGE_SIZE;
+                pageParams.pageSize = songsConstants.SONG_PAGE_SIZE;
             }
 
-            return $http.get(url, { 'params': pageParams }).then(parsePage);
+            return $http.get(url, { params: pageParams }).then(parsePage);
         }
 
         function parsePage(response) {
@@ -54,22 +54,22 @@
                 return {
                     success: true,
                     errors: null
-                }
+                };
             }
 
             if (response.status === 400) {
                 return {
                     success: false,
                     errors: response.data
-                }
+                };
             }
 
             if (response.status === 500) {
                 $log.error('Song post reponse', response);
                 return {
                     success: false,
-                    errors: { form: "Wystąpił nieoczekiwany błąd! :(" },
-                }
+                    errors: { form: 'Wystąpił nieoczekiwany błąd! :(' }
+                };
 
             }
         }
@@ -83,16 +83,12 @@
 
         function parseCurrentSong(response) {
             $log.debug('New song response', response);
-            var lastPlayed = Date.parse(response.data.LastPlayed);
+            var song = response.data;
+            var lastPlayed = Date.parse(song.Song.LastPlayed);
             var startFrom = (new Date() - lastPlayed) / 1000;
 
-            return {
-                contentId: response.data.SongId,
-                startFrom: startFrom,
-                title: response.data.Title,
-                addedBy: response.data.AddedByName,
-                timesPlayed: response.data.TimesPlayed
-            }
+            song.startFrom = startFrom; //TODO: add abstraction
+            return song;
         }
 
         function upvoteSong(song) {
@@ -104,8 +100,9 @@
         }
 
         function voteSong(song, direction) {
-            if (song.CurrentVote == direction)
+            if (song.CurrentVote === direction) {
                 return;
+            }
 
             var url = '/api/Songs/' + direction + '/' + song.Song.Id;
             $log.debug('Posting ' + direction, song.Song.Id, song.Song.Title);

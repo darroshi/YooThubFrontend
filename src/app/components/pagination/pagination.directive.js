@@ -16,20 +16,16 @@
             bindToController: true,
             controller: ControllerController,
             controllerAs: 'vm',
-            link: link,
             restrict: 'E',
             scope: {
                 paginationData: '='
             }
         };
         return directive;
-
-        function link(scope, element, attrs) {
-        }
     }
 
     ControllerController.$inject = ['$scope'];
-    
+
     /* @ngInject */
     function ControllerController($scope) {
         var vm = this;
@@ -41,16 +37,16 @@
         vm.itemsPerPage = null;
 
         activate();
-        
+
         ////////////////
         // TODO: refactor, calculate once when more than one pagination directives are rendered
         function activate() {
-            $scope.$watch('vm.paginationData', setPages)
+            $scope.$watch('vm.paginationData', setPages);
         }
 
         function setPages(newValue) {
-            
-            if (newValue === undefined || newValue === null) {
+
+            if (angular.isUndefined(newValue) || newValue === null) {
                 return;
             }
 
@@ -69,11 +65,10 @@
             vm.hasPrevious = vm.page > 1;
 
             vm.hasNext = vm.page < pages && pages !== 0;
-            console.log(vm.hasPrevious, vm.hasNext);
         }
 
         function getPagesCount(count, perPage) {
-            return Math.ceil((parseInt(count) / parseInt(perPage)));;
+            return Math.ceil(parseInt(count) / parseInt(perPage));
         }
 
         function getStartPageNumber(page, adjecantPages) {
@@ -120,7 +115,7 @@
             if (pages < 2) {
                 return urlList;
             }
-            if (start != 1) {
+            if (start !== 1) {
                 urlList.push(getRefData(1));
                 urlList.push(getDotObject());
             }
@@ -129,7 +124,7 @@
                 urlList.push(getRefData(i));
             }
 
-            if (end != pages) {
+            if (end !== pages) {
                 urlList.push(getDotObject());
                 urlList.push(getRefData(pages));
             }
