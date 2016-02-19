@@ -1,4 +1,4 @@
-sudo: required
+sudo: false
 language: node_js
 services:
   - docker
@@ -7,16 +7,15 @@ node_js:
 branches:
   only:
     - /^v\d+.\d+.\d+/
+    - develop
 cache:
   directories:
     - node_modules
     - bower_components
 install:
-  - npm -g install npm@latest
+  - npm install -g npm
   - npm install -g bower gulp
   - npm install
-  - npm install phantomjs
-  - npm install -g karma
   - bower install
 script:
   - gulp build
