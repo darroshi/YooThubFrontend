@@ -1,9 +1,12 @@
 /* Do not remove the comments below. It's the markers used by wiredep to inject
    sass dependencies when defined in the bower.json of your dependencies */
-   $roboto-font-path: "../bower_components/Materialize/font/roboto/";
-   $icons-font-path: "../bower_components/Materialize/font/material-design-icons/";
+   
 // bower:scss
 // endbower
+$small-and-down: "(max-width: 600px)";
+$medium-and-up: "(max-width: 992px)";
+$large-and-up: "(min-width: 992px)";
+
 body {
     @extend .blue-grey, .darken-3;
 }
