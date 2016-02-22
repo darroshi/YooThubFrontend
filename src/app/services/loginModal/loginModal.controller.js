@@ -1,25 +1,11 @@
-(function () {
-    'use strict';
+(function() {
+'use strict';
 
     angular
         .module('yoothub')
-        .directive('ytLoginModal', ytLoginModal);
-
-    ytLoginModal.$inject = [];
-    function ytLoginModal() {
-        var directive = {
-            templateUrl: 'app/components/login/login.html',
-            bindToController: true,
-            controller: LoginModalController,
-            controllerAs: 'vm',
-            restrict: 'E'
-        };
-        return directive;
-    }
+        .controller('LoginModalController', LoginModalController);
 
     LoginModalController.$inject = ['AccountService', '$log', '$window', '$rootScope', '$scope'];
-
-    /* @ngInject */
     function LoginModalController(AccountService, $log, $window, $rootScope, $scope) {
         var vm = this;
         vm.schemas = [];

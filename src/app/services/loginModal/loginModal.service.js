@@ -5,8 +5,8 @@
         .module('yoothub')
         .factory('LoginModalService', LoginModalService);
 
-    LoginModalService.$inject = ['$log'];
-    function LoginModalService($log) {
+    LoginModalService.$inject = ['$log', '$mdDialog'];
+    function LoginModalService($log, $mdDialog) {
         var service = {
             show: show
         };
@@ -16,7 +16,11 @@
         ////////////////
         function show() {
             $log.debug('Show login modal');
-            angular.element('#loginModal').openModal();
+            $mdDialog.show({
+                templateUrl: 'app/services/loginModal/loginModal.html',
+                controller: LoginModalController,
+                controllerAs: 'vm',
+            });
         }
 
     }
