@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -25,7 +25,7 @@
             destroyError = $rootScope.$on('player.mainPlayer.error', onPlayError);
             destroyReload = $rootScope.$on('player.mainPlayer.reload', loadSong);
 
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 destroyReady();
                 destroyEnded();
                 destroyError();

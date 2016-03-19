@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -33,9 +33,9 @@
     function theme($mdThemingProvider) {
         $mdThemingProvider.theme('default')
             .dark()
-            .primaryPalette('blue-grey', { 'default': '700' })
+            .primaryPalette('blue-grey', { default: '700' })
             .accentPalette('blue')
-            .backgroundPalette('blue-grey', { 'default': '900' });
+            .backgroundPalette('blue-grey', { default: '900' });
     }
 
 })();

@@ -1,4 +1,5 @@
-(function () {
+/* global LoginModalController */
+(function() {
     'use strict';
 
     angular
@@ -19,7 +20,7 @@
             $mdDialog.show({
                 templateUrl: 'app/services/loginModal/loginModal.html',
                 controller: LoginModalController,
-                controllerAs: 'vm',
+                controllerAs: 'vm'
             });
         }
 

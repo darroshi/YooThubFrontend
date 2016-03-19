@@ -1,5 +1,5 @@
 (function() {
-'use strict';
+    'use strict';
 
     angular
         .module('yoothub')
@@ -21,7 +21,7 @@
             $log.debug('Activate LoginModalController');
             destroyLocationChangedHandler = $rootScope.$on('$locationChangeSuccess', locationChanged);
 
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 destroyLocationChangedHandler();
             });
 
