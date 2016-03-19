@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -39,7 +39,7 @@
         activate();
 
         ////////////////
-        // TODO: refactor, calculate once when more than one pagination directives are rendered
+        // TODO: refactor or use ready lib, calculate once when more than one pagination directives are rendered
         function activate() {
             $scope.$watch('vm.paginationData', setPages);
         }

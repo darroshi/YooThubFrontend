@@ -1,28 +1,29 @@
-<div class="row ">
-    <div class="card-panel white-text blue-grey col s10 offset-s1">
-        <form name="form">
-            <div class="input-field col s12 ">
-                <input id="URL" name="URL" type="text" ng-model="vm.model.URL">
-                <label for="URL">YouTube Url</label>
-            </div>
-            <div ng-messages="form.URL.$error" role="alert" class="error-text col s12">
+<div class="row" flex-gt-sm="80" flex-offset-gt-sm="10">
+    <form name="form">
+
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>YouTube Url</label>
+            <input required ng-pattern="/^(?:https?://)?(?:www\.)(?:youtube\.com|youtu\.be)?/watch\?v=([^&]+)$/" name="URL" ng-model="vm.model.URL">
+            <div ng-messages="form.URL.$error" role="alert" class="error-text">
                 <div ng-message="required">To pole jest wymagane.</div>
+                <div ng-message="pattern">
+                    Niepoprawny url
+                </div>
                 <div ng-message="server">
                     <div ng-repeat="error in vm.errors.URL">
                         {{error}}
                     </div>
                 </div>
             </div>
-            <div class="input-field col s12">
-                <input id="Tags" name="Tags" type="text" ng-model="vm.model.Tags" ng-list>
-                <label for="Tags">Tagi</label>
-            </div>
-            <div ng-messages="form.Tags.$error" role="alert" class="error-text col s12">
-                <div ng-message="server">{{vm.errors.Tags}}</div>
-            </div>
+        </md-input-container>
 
-            <a class="waves-effect waves-light btn" ng-click="vm.postSong()">Dodaj!</a>
-            <p></p>
-        </form>
-    </div>
+
+        <md-chips name="Tags" ng-model="vm.model.Tags" placeholder="Wprowadź tag" delete-button-label="Usuń"></md-chips>
+        <div ng-messages="form.Tags.$error" role="alert" class="error-text col s12">
+            <div ng-message="server">{{vm.errors.Tags}}</div>
+        </div>
+
+        <md-button class="md-raised md-primary" ng-click="vm.postSong()">Dodaj!</md-button>
+
+    </form>
 </div>

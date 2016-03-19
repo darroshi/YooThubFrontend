@@ -23,21 +23,18 @@
 </head>
 
 <body ng-controller="MainPlayerController as playerController">
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div ng-include src="'app/layout/navbar.html'"></div>
+    <md-content class="row main-content">
+        <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div ng-include src="'app/layout/navbar.html'"></div>
 
-    <div ng-show="'play' | isState">
-        <div class="row">
-            <yt-player class="col s12 l10 offset-l1" id="mainPlayer" song="playerController.song"></yt-player>
+        <div flex="70" flex-offset="15" ng-show="'play' | isState">
+            <yt-player style="width:100%;" id="mainPlayer" song="playerController.song"></yt-player>
         </div>
-    </div>
-    
-    <yt-login-modal></yt-login-modal>
 
-    <div ui-view></div>
-
+        <div ui-view></div>
+    </md-content>
     <script src="https://www.youtube.com/iframe_api"></script>
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->

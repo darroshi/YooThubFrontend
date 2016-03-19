@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -106,7 +106,7 @@
 
             var url = '/api/Songs/' + direction + '/' + song.Song.Id;
             $log.debug('Posting ' + direction, song.Song.Id, song.Song.Title);
-            return $http.post(url).then(function (result) {
+            return $http.post(url).then(function(result) {
                 parseVotingResult(result, song, direction);
             });
         }

@@ -1,10 +1,11 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('yoothub')
         .config(config)
-        .config(configInterceptors);
+        .config(configInterceptors)
+        .config(theme);
 
     /** @ngInject */
     function config($logProvider, toastrConfig) {
@@ -24,6 +25,17 @@
     /** @ngInject */
     function configInterceptors($httpProvider) {
         $httpProvider.interceptors.push('AuthenticationInterceptor');
+    }
+
+    theme.$inject = ['$mdThemingProvider'];
+
+    /** @ngInject */
+    function theme($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .dark()
+            .primaryPalette('blue-grey', { default: '700' })
+            .accentPalette('blue')
+            .backgroundPalette('blue-grey', { default: '900' });
     }
 
 })();

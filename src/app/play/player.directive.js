@@ -1,5 +1,5 @@
 /* global YT */
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -70,7 +70,7 @@
             destroyMute = $rootScope.$on('player.' + vm.id + '.mute', mute);
             destroyUnmute = $rootScope.$on('player.' + vm.id + '.unMute', unMute);
 
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 destroyPause();
                 destroyPlay();
                 destroyMute();
