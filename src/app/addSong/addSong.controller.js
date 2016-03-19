@@ -58,8 +58,8 @@
 
         function setErrors(errors) {
             vm.errors = errors;
-            $scope.form.URL.$setValidity('server', vm.errors && !vm.errors.URL);
-            $scope.form.Tags.$setValidity('server', vm.errors && !vm.errors.Tags);
+            // $scope.form.URL.$setValidity('server', vm.errors && !vm.errors.URL);
+            // $scope.form.Tags.$setValidity('server', vm.errors && !vm.errors.Tags);
         }
     }
 })();
