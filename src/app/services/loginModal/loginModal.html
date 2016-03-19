@@ -1,13 +1,14 @@
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <p>Aby kontynuować, zaloguj się za pomocą:</p>
-        <div ng-repeat="schema in vm.schemas">
-            <form method="post" action="{{::vm.formAction}}">
-                <input type="hidden" name="Provider" value="{{::schema.AuthenticationScheme}}"></input>
-                <input type="hidden" name="ReturnURL" value="{{vm.previousUrl}}"></input>
-                <input type="submit" class="waves-effect waves-light btn" value="{{::schema.DisplayName}}"></input>
-            </form>
-        </div>
-        <p></p>
-    </div>
-</div>
+<md-dialog>
+    <md-dialog-content>
+        <md-content>
+            <p>Aby kontynuować, zaloguj się za pomocą:</p>
+            <div ng-repeat="schema in vm.schemas">
+                <form method="post" action="{{::vm.formAction}}">
+                    <input type="hidden" name="Provider" value="{{::schema.AuthenticationScheme}}"></input>
+                    <input type="hidden" name="ReturnURL" value="{{vm.previousUrl}}"></input>
+                    <md-button type="submit" class="md-raised">{{::schema.DisplayName}}</md-button>
+                </form>
+            </div>
+        </md-content>
+    </md-dialog-content>
+</md-dialog>
