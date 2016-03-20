@@ -1,5 +1,5 @@
-<div class="row">
-    <md-button ui-sref="browse({ page: vm.page-1})" ng-disabled="!vm.hasPrevious"><i class="material-icons">chevron_left</i></md-button>
-    <md-button ui-sref="{{::refData.ref}}" ng-repeat="refData in vm.refDataList" ng-class="{disabled: refData.url=='#', 'md-raised': refData.page==vm.page}">{{::refData.page}}</md-button>
-    <md-button ui-sref="browse({ page: vm.page+1})" ng-disabled="!vm.hasNext"><i class="material-icons">chevron_right</i></md-button>
+<div layout="row" layout-align="center center">
+    <md-button class="md-icon-button" ui-sref="browse({ page: vm.page-1})" ng-disabled="!vm.hasPrevious"><i class="material-icons">chevron_left</i></md-button>
+    <md-button class="md-icon-button" ui-sref="{{::refData.ref}}" ng-repeat="refData in vm.refDataList" ng-class="{disabled: refData.url=='#', 'md-raised': refData.page==vm.page}">{{::refData.page}}</md-button>
+    <md-button class="md-icon-button" ui-sref="browse({ page: vm.page+1})" ng-disabled="!vm.hasNext"><i class="material-icons">chevron_right</i></md-button>
 </div>
