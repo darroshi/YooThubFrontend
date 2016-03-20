@@ -32,6 +32,18 @@ md-card-title-text{
     color:#f44336;
 }
 
+.vertical-middle{
+    vertical-align: middle;
+}
+
+.song-card-icon-actions{
+    &:first-child{
+        margin-left: 15px;
+    }
+    div{
+        margin-right: 15px;
+    }
+}
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
    all your sass files automatically */
