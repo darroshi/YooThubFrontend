@@ -8,7 +8,7 @@
         .constant('moment', moment)
         .constant('ytVersion', '0.5.1')
         .constant('songsConstants', {
-            SONG_PAGE_SIZE: 20,
+            SONG_PAGE_SIZE: 21,
             UPVOTE: 'Upvote',
             DOWNVOTE: 'Downvote',
             VOTE_VALUES: {
