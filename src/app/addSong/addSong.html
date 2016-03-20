@@ -4,25 +4,30 @@
         <md-input-container class="md-block" flex-gt-sm>
             <label>YouTube Url</label>
             <input required ng-pattern="/^(?:https?://)?(?:www\.)(?:youtube\.com|youtu\.be)?/watch\?v=([^&]+)$/" name="URL" ng-model="vm.model.URL">
-            <div ng-messages="form.URL.$error" role="alert" class="error-text">
+
+            <div ng-messages="form.URL.$error" role="alert" class="error-text" md-auto-hide="false">
                 <div ng-message="required">To pole jest wymagane.</div>
                 <div ng-message="pattern">
                     Niepoprawny url
                 </div>
                 <div ng-message="server">
-                    <div ng-repeat="error in vm.errors.URL">
-                        {{error}}
-                    </div>
+                    <span ng-repeat="err in vm.errors.URL">
+                        {{err}}
+                    </span>
                 </div>
             </div>
+
         </md-input-container>
 
-
         <md-chips name="Tags" ng-model="vm.model.Tags" placeholder="Wprowadź tag" delete-button-label="Usuń"></md-chips>
-        <div ng-messages="form.Tags.$error" role="alert" class="error-text col s12">
-            <div ng-message="server">{{vm.errors.Tags}}</div>
+        <div ng-messages="form.Tags.$error" role="alert" class="error-text" md-auto-hide="false">
+            <div ng-message="server">
+                <span ng-repeat="err in vm.errors.Tags">
+                    {{err}}
+                </span>
+            </div>
         </div>
-
+        <p></p>
         <md-button class="md-raised md-primary" ng-click="vm.postSong()">Dodaj!</md-button>
 
     </form>
