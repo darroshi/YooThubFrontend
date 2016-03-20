@@ -17,7 +17,7 @@
             <img class="md-card-image" ng-src="http://img.youtube.com/vi/{{ ::song.Song.SongId }}/hqdefault.jpg" />
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline"><md-button ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-title-button">{{ ::song.Song.Title }}</md-button></span>
+                    <span class="md-headline"><md-button target="_blank" ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-title-button">{{ ::song.Song.Title }}</md-button></span>
                     <span class="md-subhead">{{::song.Song.AddedByName}}</span>
                 </md-card-title-text>
             </md-card-title>
@@ -27,8 +27,8 @@
                     <div class="col"><i class="tiny material-icons middle">replay</i> <span class="middle">{{::song.Song.TimesPlayed}}</span></div>
                     <div class="col"><i class="tiny material-icons middle">thumbs_up_down</i> <span class="middle">{{song.Song.Votes}}</span></div>
                 </md-card-icon-actions>
-                <md-button ng-click="vm.upvote(song)" ng-class="{upvoted: song.CurrentVote == 'Upvote'}"><i class="material-icons left">thumb_up</i></md-button>
-                <md-button ng-click="vm.downvote(song)" ng-class="{downvoted: song.CurrentVote == 'Downvote'}"><i class="material-icons left">thumb_down</i></md-button>
+                <md-button class="md-icon-button" ng-click="vm.upvote(song)" ng-class="{upvoted: song.CurrentVote == 'Upvote'}"><i class="material-icons left">thumb_up</i></md-button>
+                <md-button class="md-icon-button" ng-click="vm.downvote(song)" ng-class="{downvoted: song.CurrentVote == 'Downvote'}"><i class="material-icons left">thumb_down</i></md-button>
             </md-card-actions>
         </md-card>
         </div>

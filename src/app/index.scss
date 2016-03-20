@@ -4,6 +4,10 @@
 // bower:scss
 // endbower
 
+.main-content{
+    min-height: 100%;
+}
+
 md-card-title{
     max-width: 100%;
 }
@@ -20,7 +24,13 @@ md-card-title-text{
     max-width: 100%;
 }
 
+.upvoted{
+    color: #259b24;
+}
 
+.downvoted{
+    color:#f44336;
+}
 
 
 /* Do not remove the comments below. It's the markers used by gulp-inject to inject
