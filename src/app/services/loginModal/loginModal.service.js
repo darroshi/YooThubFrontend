@@ -1,25 +1,11 @@
-(function () {
+(function() {
     'use strict';
 
     angular
         .module('yoothub')
-        .directive('ytLoginModal', ytLoginModal);
-
-    ytLoginModal.$inject = [];
-    function ytLoginModal() {
-        var directive = {
-            templateUrl: 'app/components/login/login.html',
-            bindToController: true,
-            controller: LoginModalController,
-            controllerAs: 'vm',
-            restrict: 'E'
-        };
-        return directive;
-    }
+        .controller('LoginModalController', LoginModalController);
 
     LoginModalController.$inject = ['AccountService', '$log', '$window', '$rootScope', '$scope'];
-
-    /* @ngInject */
     function LoginModalController(AccountService, $log, $window, $rootScope, $scope) {
         var vm = this;
         vm.schemas = [];
@@ -35,7 +21,7 @@
             $log.debug('Activate LoginModalController');
             destroyLocationChangedHandler = $rootScope.$on('$locationChangeSuccess', locationChanged);
 
-            $scope.$on('$destroy', function () {
+            $scope.$on('$destroy', function() {
                 destroyLocationChangedHandler();
             });
 
@@ -47,8 +33,34 @@
         }
 
         function setSchemas(data) {
-            $log.info('Set schema ', data);
+            $log.debug('Set schema ', data);
             vm.schemas = data;
         }
     }
+
+    angular
+        .module('yoothub')
+        .factory('LoginModalService', LoginModalService);
+
+    LoginModalService.$inject = ['$log', '$mdDialog'];
+    function LoginModalService($log, $mdDialog) {
+        var service = {
+            show: show
+        };
+
+        return service;
+
+        ////////////////
+        function show() {
+            $log.debug('Show login modal');
+            $mdDialog.show({
+                templateUrl: 'app/services/loginModal/loginModal.html',
+                controller: LoginModalController,
+                controllerAs: 'vm'
+            });
+        }
+
+    }
 })();
+
+
