@@ -3,43 +3,21 @@
    
 // bower:scss
 // endbower
-$small-and-down: "(max-width: 600px)";
-$medium-and-up: "(max-width: 960px)";
-$large-and-up: "(min-width: 960px)";
 
-.main-content{
-    min-height: 100%;
+md-card-title{
+    max-width: 100%;
 }
 
-@mixin column-count($ct) {
-  -webkit-column-count: $ct;
-  -moz-column-count: $ct;
-  column-count: $ct;
+md-card-title-text{
+    max-width: 100%;
+    overflow: hidden;
 }
 
-.cards-container {
-  column-break-inside: avoid;
-  .card {
-    display: inline-block;
-    overflow: visible;
-    width: 100%;
-  }
-}
-
-@media #{$small-and-down} {
-  .cards-container {
-    @include column-count(1);
-  }
-}
-@media #{$medium-and-up} {
-  .cards-container {
-    @include column-count(2);
-  }
-}
-@media #{$large-and-up} {
-  .cards-container {
-    @include column-count(3);
-  }
+.song-title-button{
+    font-size: 18px;
+    margin: 0;
+    text-transform: none;
+    max-width: 100%;
 }
 
 
