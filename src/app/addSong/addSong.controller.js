@@ -5,8 +5,8 @@
         .module('yoothub')
         .controller('AddSongController', AddSongController);
 
-    AddSongController.$inject = ['SongService', '$log', '$scope', 'ToastService', 'AccountService'];
-    function AddSongController(SongService, $log, $scope, ToastService, AccountService) {
+    AddSongController.$inject = ['SongService', '$log', '$scope', 'ToastService', 'AccountService', '$mdConstant'];
+    function AddSongController(SongService, $log, $scope, ToastService, AccountService, $mdConstant) {
         var vm = this;
         vm.postSong = postSong;
 
@@ -17,6 +17,8 @@
 
         vm.errors = null;
         vm.processing = false;
+
+        vm.tagsSeparatorKeys = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA, $mdConstant.KEY_CODE.SPACE];
 
         activate();
 
