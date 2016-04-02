@@ -19,7 +19,7 @@
 
         </md-input-container>
 
-        <md-chips name="Tags" ng-model="vm.model.Tags" placeholder="Wprowadź tag" delete-button-label="Usuń"></md-chips>
+        <md-chips name="Tags" ng-model="vm.model.Tags" md-separator-keys="vm.tagsSeparatorKeys" placeholder="Wprowadź tag" delete-button-label="Usuń"></md-chips>
         <div ng-messages="form.Tags.$error" role="alert" class="error-text" md-auto-hide="false">
             <div ng-message="server">
                 <span ng-repeat="err in vm.errors.Tags">
