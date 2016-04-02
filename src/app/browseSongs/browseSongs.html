@@ -1,20 +1,19 @@
 <div class="row" flex-gt-sm="80" flex-offset-gt-sm="10">
     <div>
         <md-input-container class="md-block" flex-gt-sm>
-            <label>First name</label>
+            <label>Search</label>
             <input ng-model="vm.search" ng-change="vm.onSearchChanged()" ng-model-options="{ debounce: 1000 }">
         </md-input-container>
 
     </div>
     <div class="row">
-
         <yt-pagination class="center" pagination-data="vm.paginationData" />
-
     </div>
+    <p></p>
     <div layout="row" layout-wrap>
         <div ng-repeat="song in vm.songs" flex-gt-sm="33" flex-sm="50">
             <md-card>
-                <img class="md-card-image" ng-src="http://img.youtube.com/vi/{{ ::song.Song.SongId }}/hqdefault.jpg" />
+                <img class="md-card-image" ng-src="http://img.youtube.com/vi/{{ ::song.Song.SongId }}/mqdefault.jpg" />
                 <md-card-title>
                     <md-card-title-text>
                         <span class="md-headline"><md-button target="_blank" ng-href="https://www.youtube.com/watch?v={{ ::song.Song.SongId }}" class="card-title song-title-button">{{ ::song.Song.Title }}</md-button></span>
@@ -33,9 +32,11 @@
             </md-card>
         </div>
     </div>
+    <p></p>
     <div class="row">
         <div>
             <yt-pagination class="center" pagination-data="vm.paginationData" />
         </div>
     </div>
+    <p></p>
 </div>
